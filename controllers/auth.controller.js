@@ -11,28 +11,66 @@ module.exports = {
         const newregister = new authModel({
             username:req.body.username,
             email:req.body.email,
-            password:bcrypt.hashSync(req.body.password)
+            password:bcrypt.hashSync(req.body.password,salt)
         })
         const registerdata = await newregister.save();
         if(!registerdata){
-            return res.status(400).json({status:false,message:"failed to register"});
+             return res.status(400).json({status:false,message:"failed to register"});
         }
             return res.status(200).json({status:true,message:"user registered successfully",registerdata});
+
     },
+
+    update: async(req,res,next) =>{
+        const updatedetails = await authModel.findOneAndUpdate({email:req.query.email},{$set:
+            {email:req.body.email , username:req.body.username}});
+        if(updatedetails){
+            return res.status(200).send({status:"true",message:"updated successful"});
+
+        }
+            return res.status(400).send({status:false, message:"couldn't update the details"})
+    },
+
+    updatepassword:async(req,res,next) =>{
+        const updatepassword = await authModel.findOneAndUpdate({email:req.query.email},{$set:
+            {password:bcrypt.hashSync(req.body.password,salt)} });
+            console.log("updatepassword",updatepassword)
+        if(updatepassword){
+            console.log("####",updatepassword)
+            return res.status(200).send({status:"true",message:"password updated successfully"});
+        }
+            return res.status(400).send({status:false,message:"could not update the password"})
+    },
+
+
     signin:async(req,res,next) => {
-        const checkdetails = await authModel.findOne({email:req.body.email},{password:req.body.password});
+        const checkdetails = await authModel.findOne({email:req.body.email});
         if(!checkdetails){
             console.log("data",checkdetails)
-            return res.status(400).send({status:false,message:"invalid crendentials! please check your crendtials"});
-
-        }
-        else{
-            console.log("datain",checkdetails)
-            return res.status(200).send({status:true,message:"login successful"})
-        }
+            return res.status(400).json({status:false,message:"invalid crendentials! please check your email"});
+             };
+        console.log("checkdetails:",checkdetails)
+        const checkpassword = bcrypt.compareSync(req.body.password,checkdetails.password)
+        console.log("checkdetails.password",checkdetails.password)
+        if(!checkpassword){
+            console.log("passworddetails:",checkpassword)
+            return res.status(400).json({status:false,message:"invalid password"});
+            }
+      
+            return res.status(200).json({status:true, message:"login successful"});
+        },  
         
+    deletebyemail:async(req,res,next) =>{
+           const deletecollection = await authModel.deleteOne({email:req.query.email});
+        if(deletecollection){
+            console.log("*****")
+           return res.status(200).send({status:true,message:"email deleted successful"})
+        }
+           return res.status(400).send({status:false,message:"couldnot delte the requested email"})
 
     },
+    
+
     signout:async(req,res,next)=>{
         req.session=null;
         return res.status(200).send({status:true,message:"logout successful"})
