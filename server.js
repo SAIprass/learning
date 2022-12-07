@@ -2,9 +2,10 @@
  const express = require("express");//Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
  //const mongoose = require("mongoose");//Mongoose is a Object Data Modeling (ODM) library for MongoDB distributed as an npm package.
  const app = express();
+ require('dotenv').config()
  const chalk = require("chalk")//The chalk module is a third-party library that can be used for styling of texts(the display of string in terminal can be in colour we choose)
  const cors = require("cors")//CORS-Cross-Origin Resource Sharing.CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
- const mongoose = require ("./configs")//defining the config.js file path
+ const mongoose = require ("./configuration/configs")//defining the config.js file path
  mongoose.connect()
  const port = 3030;//defining port value 
  //app.use ()- The app.use() function is used to mount the specified middleware function (are the functions that have access to the request object and response object, or we can call it a response-request cycle) at the path which is being specified. 

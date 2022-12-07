@@ -12,13 +12,13 @@ module.exports = {
     },
 
     get : async(req,res,next) => {
-        const data = await learningModel.find({});
-        if(data) {
+        const data = await learningModel.find();
+        if(!data) {
             console.log("+++++++",data);
-            return res.status(200).send({status:true,message:"data",data});
+            return res.status(404).send({status:false,message:"data not found"});
         }
         else {
-            return res.status(404).send({status:false,message:"data not found"});
+            return res.status(200).send({status:true,message:"data",data});
         }
             
      },

@@ -1,4 +1,5 @@
 const authModel = require('../models/authmodel');
+const jwt = require("jsonwebtoken");
 const bcrypt = require('bcryptjs');//The bcrypt npm package is a JavaScript implementation of the bcrypt password hashing function that allows you to easily create a hash out of a password string .
 const salt = bcrypt.genSaltSync(10)
 //salt npm = A salt is a random piece of data that is used as an additional input to a one-way function that hashes data or a password. 
@@ -56,8 +57,8 @@ module.exports = {
             console.log("passworddetails:",checkpassword)
             return res.status(400).json({status:false,message:"invalid password"});
             }
-      
-            return res.status(200).json({status:true, message:"login successful"});
+            const token = jwt.sign({id:checkdetails.id},process.env.JWT);
+            return res.status(200).send({username:checkdetails.username,token:token})
         },  
         
     deletebyemail:async(req,res,next) =>{
