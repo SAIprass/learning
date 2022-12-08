@@ -57,7 +57,7 @@ module.exports = {
             console.log("passworddetails:",checkpassword)
             return res.status(400).json({status:false,message:"invalid password"});
             }
-            const token = jwt.sign({id:checkdetails.id},process.env.JWT);
+            const token = jwt.sign({id:checkdetails.id},process.env.JWT_SECRET);
             return res.status(200).send({username:checkdetails.username,token:token})
         },  
         

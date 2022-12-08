@@ -1,4 +1,5 @@
 const learningModel = require("../models/model");
+const nodemailer = require("../nodemailer/mailer");
 
 module.exports = {
     insert : async(req,res,next) => {
@@ -15,9 +16,12 @@ module.exports = {
         const data = await learningModel.find();
         if(!data) {
             console.log("+++++++",data);
+            
             return res.status(404).send({status:false,message:"data not found"});
         }
         else {
+            await nodemailer.mailer();
+            console.log(nodemailer.mailer())
             return res.status(200).send({status:true,message:"data",data});
         }
             
