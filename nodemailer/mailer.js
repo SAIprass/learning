@@ -1,7 +1,7 @@
 var nodemailer = require("nodemailer")
 var smtpTransport = require('nodemailer-smtp-transport');
-const mailer = async(req,res)=>{
-    var transporter = nodemailer.createTransport(smtpTransport({
+const mailer = async(otp)=>{
+   var transporter = nodemailer.createTransport(smtpTransport({
       service: 'gmail',
       host: 'smtp.gmail.com',
       auth: {
@@ -13,7 +13,7 @@ const mailer = async(req,res)=>{
       from: 'saivendoti27@gmail.com',
       to: 'cmssfamily@gmail.com',
       subject: 'Sending Email using Node.js[nodemailer]',
-      text: 'That was easy!'
+      text: `Your Otp Number is:${otp}`
     };
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
