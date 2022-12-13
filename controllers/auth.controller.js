@@ -61,14 +61,15 @@ module.exports = {
     
     verifyotp:async(req,res,next) =>{
         const  {email, otp}  = req.body;
-        const recheckemail = await authModel.findOne({email:email,otp:otp});
+        const recheckemail = await authModel.findOne({email:email});
         if(!recheckemail){
             return res.status(400).send({status:false,message:"email not found"})
         }
         if(recheckemail.otp == otp){
             return res.status(200).send({status:true,message:"otp verified"});
-        }
+        }else{
             return res.status(402).send({status:false,message:"Invalid otp"});
+        }
     },
 
     update: async(req,res,next) =>{

@@ -18,10 +18,14 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "mongodb-autoincrement": "^1.0.1",
     "mongoose": "^6.7.4",
+    "mongoose-sequence": "^5.3.1",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.8.0",
     "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "salt": "^0.5.5",
     "sendotp": "^1.2.9"
   }

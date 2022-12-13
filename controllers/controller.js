@@ -1,3 +1,4 @@
+const authmodel = require("../models/authmodel");
 const learningModel = require("../models/model");
 const nodemailer = require("../nodemailer/mailer");
 
@@ -22,10 +23,32 @@ module.exports = {
         else {
             await nodemailer.mailer();
             console.log(nodemailer.mailer())
-            return res.status(200).send({status:true,message:"data",data});
-        }
-            
-     },
+            const datadetails = await learningModel.aggregate([
+                { $lookup:
+                     {
+                       from:"auths",
+                       localField:"Name" ,
+                       foreignField:"username",
+                       as:"NAME"
+
+                     }
+                },{
+                    $sort:{Age:1}
+                },{
+                    $match:{Age:{$nin:[26]}}
+                },//,{
+                //     $group:{_id:null,totalcount:{$sum:"Age"},count:{$sum:1}}
+                // }
+                ])
+                console.log("match",datadetails)
+                if(datadetails){
+                     return res.status(200).send({status:true,message:"NAME",datadetails})
+                 }
+                 console.log("NAME",datadetails)
+                 //return res.status(200).send({status:true,message:"data",data});
+        };
+    
+        },
 
      getbyid:async(req,res,next) =>{
         //const data =await learningModel.find({Name:req.body.Name})

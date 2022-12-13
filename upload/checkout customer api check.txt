@@ -1,0 +1,128 @@
+https://uat-api-wcrevamp-client.censanext.com/api/v1/cart/myCart
+
+
+{
+    "status": 200,
+    "result": {
+      "items": [
+        {
+          "category": "FRESH VEGETABLES",
+          "data": [
+            {
+              "itemDbId": "60953932acd58a0721742fa6",
+              "itemId": "WC0000000000270006",
+              "imageUrl": "https://waycoolstorage.blob.core.windows.net/iglulab/627e524a84736.jpg",
+              "itemName": "TOMATO HYBRID - KG",
+              "catName": "FRESH VEGETABLES",
+              "subCatName": "ONION POT TOM",
+              "brand": "",
+              "quantity": 45,
+              "displayQty": 45,
+              "moq": 0,
+              "conditionType": "ZSEC",
+              "uom": "KG",
+              "price": "16.5",
+              "discount": [],
+              "inventory": [
+                {
+                  "_id": "63183a23195d000025001f57",
+                  "plantCode": 1000,
+                  "conditionType": "ZSEC",
+                  "salesOrg": 5000,
+                  "distributionChannel": 50,
+                  "uom": "KG",
+                  "stock": -1,
+                  "moq": 0,
+                  "orderQuantity": 4
+                }
+              ],
+              "remaining_stock": -1,
+              "total": "742.50",
+              "savedAmount": "0.00",
+              "offerPrice": "0.00"
+            }
+          ],
+          "total": "742.50"
+        }
+      ],
+      "itemsCount": 1,
+      "subTotal": "742.50",
+      "netTotal": "742.50",
+      "savedTotal": "0.00",
+      "deliveryAmount": 0,
+      "deliveryData": {
+        "deliveryCharge": {
+          "ShippingOrderAmt": 200,
+          "shippingCharge": 20
+        },
+        "minimumOrder": 49,
+        "orderFromTime": "07:30:00",
+        "orderToTime": "22:00:00"
+      },
+      "deliveryAddress": {
+        "_id": "627f63734e7c636f2e1c42e1",
+        "address1": "no2 Chandni chowk circle  Russell Market, 1, Dharmaraja Koil St, Shivaji Nagar",
+        "address2": "Chandni chowk road shivaji nagar bangalore near Russell market",
+        "city": "Bengaluru",
+        "latitude": "12.985391191213383",
+        "longitude": "77.60580115020275",
+        "pincode": "560051",
+        "state": "Karnataka"
+      }
+    }
+  }
+
+
+
+// https://uat-api-wcrevamp-client.censanext.com/api/v1/cart/getPaymentDetails
+{
+    "creditLimit": "7400.00",
+    "currentDate": "2022-12-02",
+    "daysExempted": [],
+    "isCredit": true,
+    "minDeliveryDay": 0,
+    "maxDeliveryDay": 4,
+    "minOrderAmount": 49,
+    "orderFromTime": "07:30:00",
+    "orderToTime": "22:00:00",
+    "orderMessage": "",
+    "orderTime": true,
+    "out_standing_amount": "-246.15",
+    "paymentMode": "credit",
+    "subTotal": "742.50",
+    "deliveryCharge": "0.00",
+    "netTotal": "742.50",
+    "savedTotal": "0.00",
+    "totalCreditBalance": "7646.15",
+    "deliveryAddress": {
+      "_id": "627f63734e7c636f2e1c42e1",
+      "address1": "no2 Chandni chowk circle  Russell Market, 1, Dharmaraja Koil St, Shivaji Nagar",
+      "address2": "Chandni chowk road shivaji nagar bangalore near Russell market",
+      "city": "Bengaluru",
+      "latitude": "12.985391191213383",
+      "longitude": "77.60580115020275",
+      "name": "A Fazlur Rahman",
+      "pincode": "560051",
+      "state": "Karnataka"
+    },
+    "totalItems": 1
+  }
+// https://uat-api-wcrevamp-client.censanext.com/api/v1/orders/checkout
+  {
+    "status": 200,
+    "data": {
+      "soDBId": "6389914a8cd298328050b6df"
+    },
+    "message": "Order saved successfully."
+  }
+
+
+  // https://uat-api-mergecensarevamp.censanext.com/index.php/Hybrid_salesOrder_data
+  {
+    "SalesOrder_Id": "",
+    "status": 200,
+    "message": "Failed",
+    "remarks": [
+      "Sale order Cannot Be Created With \"WC0000000000270006\" Netprice Zero"
+    ]
+  }
